@@ -1,31 +1,31 @@
-# DogecoinClient
+# OpalcoinClient
 
-DogecoinClient is a gem that makes it easy to work with dogecoin in ruby.
+OpalcoinClient is a gem that makes it easy to work with opalcoin in ruby.
 
 ## Dependencies
 
-The only requirement is a running dogecoin daemon ([dogecoind](https://github.com/dogecoin/dogecoin)). Make sure to check out the [doc section](https://github.com/dogecoin/dogecoin/tree/master/doc) and follow the instructions for your os.
-NOTICE: by default dogecoind will only allow local connections.
+The only requirement is a running opalcoin daemon ([opalcoind](https://github.com/opalcoin/opalcoin)). Make sure to check out the [doc section](https://github.com/opalcoin/opalcoin/tree/master/doc) and follow the instructions for your os.
+NOTICE: by default opalcoind will only allow local connections.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'dogecoin_client'
+    gem 'opalcoin_client'
 
 Or install it yourself as:
 
-    $ gem install dogecoin_client
+    $ gem install opalcoin_client
 
 ## Configuration
 
 If you're using rails you can create an initializer. Here are the default settings:
 
 ```ruby
-# config/initializers/dogecoin_client.rb
-DogecoinClient.configure do |config|
+# config/initializers/opalcoin_client.rb
+OpalcoinClient.configure do |config|
     config.host = 'localhost'
-    config.port = 22555
+    config.port = 51990
     config.protocol = :http
     config.user = ''
     config.password = ''
@@ -35,23 +35,23 @@ end
 You can also pass config variables as an options hash when creating a new client:
 
 ```ruby
-client = DogecoinClient.new(user: 'my_dogecoind_username', password: 'my_super_secure_password')
+client = OpalcoinClient.new(user: 'my_opalcoind_username', password: 'my_super_secure_password')
 ```
 
 ## Example Usage
 
 ```ruby
 # create a new instance of the client
-client = DogecoinClient.new
+client = OpalcoinClient.new
 
-# check that dogecoind is running and that our credentials are correct
+# check that opalcoind is running and that our credentials are correct
 if client.valid?
     # get a new wallet address
     new_wallet_addr = client.get_new_address
 
     # get the balance of our new wallet
     my_balance = client.get_balance(new_wallet_addr)
-    puts "I have #{my_balance} doge!"
+    puts "I have #{my_balance} opal!"
 else
     puts 'Something is wrong...'
 end
@@ -69,7 +69,7 @@ end
 <tr>
 <td> add_multi_sig_address </td>
 <td> [nrequired] ["key","key"] [account] </td>
-<td> <b>Currently only available on testnet</b> Add a nrequired-to-sign multisignature address to the wallet. Each key is a dogecoin address or hex-encoded public key. If [account] is specified, assign address to [account]. </td>
+<td> <b>Currently only available on testnet</b> Add a nrequired-to-sign multisignature address to the wallet. Each key is a opalcoin address or hex-encoded public key. If [account] is specified, assign address to [account]. </td>
 <td> No
 </td></tr>
 <tr>
@@ -80,8 +80,8 @@ end
 </td></tr>
 <tr>
 <td> dump_priv_key </td>
-<td> [dogecoinaddress] </td>
-<td> Reveals the private key corresponding to <dogecoinaddress< </td>
+<td> [opalcoinaddress] </td>
+<td> Reveals the private key corresponding to <opalcoinaddress< </td>
 <td> Yes
 </td></tr>
 <tr>
@@ -92,14 +92,14 @@ end
 </td></tr>
 <tr>
 <td> get_account </td>
-<td> [dogecoinaddress] </td>
+<td> [opalcoinaddress] </td>
 <td> Returns the account associated with the given address. </td>
 <td> No
 </td></tr>
 <tr>
 <td> get_account_address </td>
 <td> [account] </td>
-<td> Returns the current dogecoin address for receiving payments to this account. </td>
+<td> Returns the current opalcoin address for receiving payments to this account. </td>
 <td> No
 </td></tr>
 <tr>
@@ -153,7 +153,7 @@ end
 <tr>
 <td> get_generate </td>
 <td> </td>
-<td> Returns true or false whether dogecoind is currently generating hashes </td>
+<td> Returns true or false whether opalcoind is currently generating hashes </td>
 <td> No
 </td></tr>
 <tr>
@@ -205,7 +205,7 @@ end
 <tr>
 <td> get_new_address </td>
 <td> [account] </td>
-<td> Returns a new dogecoin address for receiving payments.  If [account] is specified (recommended), it is added to the address book so payments received with the address will be credited to [account]. </td>
+<td> Returns a new opalcoin address for receiving payments.  If [account] is specified (recommended), it is added to the address book so payments received with the address will be credited to [account]. </td>
 <td> No
 </td></tr>
 <tr>
@@ -216,8 +216,8 @@ end
 </td></tr>
 <tr>
 <td> get_received_by_address </td>
-<td> [dogecoinaddress] [minconf=1] </td>
-<td> Returns the total amount received by <dogecoinaddress< in transactions with at least [minconf] confirmations. While some might consider this obvious, value reported by this only considers *receiving* transactions. It does not check payments that have been made *from* this address. In other words, this is not "getaddressbalance". Works only for addresses in the local wallet, external addresses will always show 0. </td>
+<td> [opalcoinaddress] [minconf=1] </td>
+<td> Returns the total amount received by <opalcoinaddress< in transactions with at least [minconf] confirmations. While some might consider this obvious, value reported by this only considers *receiving* transactions. It does not check payments that have been made *from* this address. In other words, this is not "getaddressbalance". Works only for addresses in the local wallet, external addresses will always show 0. </td>
 <td> No
 </td></tr>
 <tr>
@@ -260,7 +260,7 @@ end
 </td></tr>
 <tr>
 <td> import_priv_key </td>
-<td> [dogecoinprivkey] [label] </td>
+<td> [opalcoinprivkey] [label] </td>
 <td> Adds a private key (as returned by dumpprivkey) to your wallet. </td>
 <td> Yes
 </td></tr>
@@ -296,7 +296,7 @@ end
 </li><li> "amount": total amount received by the address
 </li><li> "confirmations": number of confirmations of the most recent transaction included
 </li></ul>
-<p>To get a list of accounts on the system, execute dogecoind listreceivedbyaddress 0 true
+<p>To get a list of accounts on the system, execute opalcoind listreceivedbyaddress 0 true
 </p>
 </td>
 <td> No
@@ -322,7 +322,7 @@ end
 </td></tr>
 <tr>
 <td> send_from </td>
-<td> [fromaccount] [todogecoinaddress] [amount] [minconf=1] [comment] [comment-to] </td>
+<td> [fromaccount] [toopalcoinaddress] [amount] [minconf=1] [comment] [comment-to] </td>
 <td> <amount< is a real and is rounded to 8 decimal places. Will send the given amount to the given address, ensuring the account has a valid balance using [minconf] confirmations. Returns the transaction ID if successful (not in JSON object). </td>
 <td> Yes
 </td></tr>
@@ -334,13 +334,13 @@ end
 </td></tr>
 <tr>
 <td> send_to_address </td>
-<td> [dogecoinaddress] [amount] [comment] [comment-to] </td>
+<td> [opalcoinaddress] [amount] [comment] [comment-to] </td>
 <td> <amount< is a real and is rounded to 8 decimal places. Returns the transaction ID <txid< if successful. </td>
 <td> Yes
 </td></tr>
 <tr>
 <td> set_account </td>
-<td> [dogecoinaddress] [account] </td>
+<td> [opalcoinaddress] [account] </td>
 <td> Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account. </td>
 <td> No
 </td></tr>
@@ -354,7 +354,7 @@ Generation is limited to [genproclimit] processors, -1 is unlimited. </td>
 </td></tr>
 <tr>
 <td> sign_message </td>
-<td> [dogecoinaddress] [message] </td>
+<td> [opalcoinaddress] [message] </td>
 <td> Sign a message with the private key of an address. </td>
 <td> Yes
 </td></tr>
@@ -367,18 +367,18 @@ Generation is limited to [genproclimit] processors, -1 is unlimited. </td>
 <tr>
 <td> stop </td>
 <td> </td>
-<td> Stop dogecoin server. </td>
+<td> Stop opalcoin server. </td>
 <td> No
 </td></tr>
 <tr>
 <td> validate_address </td>
-<td> [dogecoinaddress] </td>
-<td> Return information about [dogecoinaddress]. </td>
+<td> [opalcoinaddress] </td>
+<td> Return information about [opalcoinaddress]. </td>
 <td> No
 </td></tr>
 <tr>
 <td> verify_message </td>
-<td> [dogecoinaddress] [signature] [message] </td>
+<td> [opalcoinaddress] [signature] [message] </td>
 <td> Verify a signed message. </td>
 <td> No
 </td></tr>
@@ -401,11 +401,11 @@ Generation is limited to [genproclimit] processors, -1 is unlimited. </td>
 <td> No
 </td></tr></table>
 
-*Table stolen from [node-dogecoin](https://github.com/countable/node-dogecoin)
+*Table stolen from [node-opalcoin](https://github.com/countable/node-opalcoin)
 
 ## Contributing
 
-For local testing, make sure to replace the user/password in `spec/client_spec.rb` and `spec/dogecoin_client_spec.rb` with the credentials for your local dogecoind.
+For local testing, make sure to replace the user/password in `spec/client_spec.rb` and `spec/opalcoin_client_spec.rb` with the credentials for your local opalcoind.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)

@@ -1,14 +1,14 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require 'dogecoin_client'
-require 'dogecoin_client/methods'
+require 'opalcoin_client'
+require 'opalcoin_client/methods'
 require 'errors/http_error'
 require 'errors/rpc_error'
 require 'errors/invalid_method_error'
 
 
-class DogecoinClient
+class OpalcoinClient
   class Client
 
     attr_accessor :options
@@ -23,7 +23,7 @@ class DogecoinClient
     end
 
     def method_missing(name, *args)
-      raise DogecoinClient::InvalidMethodError.new(name) unless DogecoinClient::METHODS.include?(name.to_s)
+      raise OpalcoinClient::InvalidMethodError.new(name) unless OpalcoinClient::METHODS.include?(name.to_s)
 
       response = http_post_request( get_post_body(name, args) )
       get_response_data(response)
@@ -43,7 +43,7 @@ class DogecoinClient
       response = http.request(request)
 
       return response if response.class == Net::HTTPOK or response.class == Net::HTTPInternalServerError
-      raise DogecoinClient::HTTPError.new(response)
+      raise OpalcoinClient::HTTPError.new(response)
     end
 
     private
@@ -54,7 +54,7 @@ class DogecoinClient
 
     def get_response_data(http_ok_response)
       resp = JSON.parse( http_ok_response.body )
-      raise DogecoinClient::RPCError.new(resp['error']['message']) if resp['error'] and http_ok_response.class == Net::HTTPInternalServerError
+      raise OpalcoinClient::RPCError.new(resp['error']['message']) if resp['error'] and http_ok_response.class == Net::HTTPInternalServerError
       resp['result']
     end
 
@@ -63,8 +63,8 @@ class DogecoinClient
     end
 
     def get_defaults
-      DogecoinClient.configuration.instance_variables.each.inject({}) {|hash, var|
-        hash[var.to_s.delete('@').to_sym] = DogecoinClient.configuration.instance_variable_get(var);
+      OpalcoinClient.configuration.instance_variables.each.inject({}) {|hash, var|
+        hash[var.to_s.delete('@').to_sym] = OpalcoinClient.configuration.instance_variable_get(var);
         hash
       }
     end

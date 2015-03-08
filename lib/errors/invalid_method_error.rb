@@ -1,4 +1,4 @@
-class DogecoinClient
+class OpalcoinClient
   class InvalidMethodError < StandardError
 
     attr_accessor :message

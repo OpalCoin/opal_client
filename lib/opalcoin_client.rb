@@ -1,10 +1,10 @@
-require 'dogecoin_client/version'
-require 'dogecoin_client/client'
+require 'opalcoin_client/version'
+require 'opalcoin_client/client'
 
-class DogecoinClient
+class OpalcoinClient
 
   def initialize(options = {})
-    @client = DogecoinClient::Client.new(options)
+    @client = OpalcoinClient::Client.new(options)
   end
 
   # Delegate everything to the 'real' Client
@@ -25,7 +25,7 @@ class DogecoinClient
 
     def initialize
       self.host = 'localhost'
-      self.port = 22555
+      self.port = 51990
       self.protocol = :http
       self.user = ''
       self.password = ''

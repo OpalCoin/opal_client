@@ -1,4 +1,4 @@
-class DogecoinClient
+class OpalcoinClient
   METHODS = %w(
      add_multi_sig_address
      backup_wallet

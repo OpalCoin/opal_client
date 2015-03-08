@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dogecoin_client/version'
+require 'opalcoin_client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "dogecoin_client"
-  spec.version       = DogecoinClient::VERSION
-  spec.authors       = ["Ryan Epp"]
-  spec.email         = ["hey@ryanepp.com"]
-  spec.description   = %q{A Dogecoin client for ruby. This gem is a ruby wrapper for making remote procedure calls (rpc) to a dogecoin daemon (dogecoind.)}
-  spec.summary       = %q{DogecoinClient is a gem that makes it easy to work with dogecoin in ruby.}
+  spec.name          = "opalcoin_client"
+  spec.version       = OpalcoinClient::VERSION
+  spec.authors       = ["Whit Jack"]
+  spec.email         = ["whit@whitjack.me"]
+  spec.description   = %q{A Opalcoin client for ruby. This gem is a ruby wrapper for making remote procedure calls (rpc) to a opalcoin daemon (opalcoind.)}
+  spec.summary       = %q{OpalcoinClient is a gem that makes it easy to work with opalcoin in ruby.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

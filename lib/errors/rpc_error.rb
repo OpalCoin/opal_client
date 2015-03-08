@@ -1,4 +1,4 @@
-class DogecoinClient
+class OpalcoinClient
   class RPCError < StandardError
 
     attr_accessor :message

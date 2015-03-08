@@ -1,4 +1,4 @@
-class DogecoinClient
+class OpalcoinClient
   class HTTPError < StandardError
 
     attr_accessor :object, :message

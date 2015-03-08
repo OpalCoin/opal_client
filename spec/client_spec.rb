@@ -1,18 +1,18 @@
 require 'net/http'
-require 'dogecoin_client/client'
+require 'opalcoin_client/client'
 require 'errors/http_error'
 require 'errors/rpc_error'
 require 'errors/invalid_method_error'
 
-describe DogecoinClient::Client do
+describe OpalcoinClient::Client do
 
   def valid_client
-    # For local testing ensure you have dogecoind running correctly and use your own username / password here
-    DogecoinClient::Client.new(user: 'dogecoinrpc', password: '5d36c07c20a43a281f54c07d72ce78cc')
+    # For local testing ensure you have opalcoind running correctly and use your own username / password here
+    OpalcoinClient::Client.new(user: 'opalcoinrpc', password: '5d36c07c20a43a281f54c07d72ce78cc')
   end
 
   it 'rejects bad credentials' do
-    bad_client = DogecoinClient::Client.new(user: 'bad_username', password: 'bad_password')
+    bad_client = OpalcoinClient::Client.new(user: 'bad_username', password: 'bad_password')
     bad_client.valid?.should eql(false)
   end
 
@@ -21,8 +21,8 @@ describe DogecoinClient::Client do
   end
 
   it 'catches requests with bad credentials' do
-    bad_client = DogecoinClient::Client.new(user: 'bad_username', password: 'bad_password')
-    expect { bad_client.get_info }.to raise_error(DogecoinClient::HTTPError)
+    bad_client = OpalcoinClient::Client.new(user: 'bad_username', password: 'bad_password')
+    expect { bad_client.get_info }.to raise_error(OpalcoinClient::HTTPError)
   end
 
   it 'catches requests with bad service urls' do
@@ -42,11 +42,11 @@ describe DogecoinClient::Client do
   end
 
   it 'throws rpc_error when the params are bad' do
-    expect { valid_client.get_account('bad_location') }.to raise_error(DogecoinClient::RPCError)
+    expect { valid_client.get_account('bad_location') }.to raise_error(OpalcoinClient::RPCError)
   end
 
   it 'only allows listed methods' do
-    expect { valid_client.not_a_real_method }.to raise_error(DogecoinClient::InvalidMethodError)
+    expect { valid_client.not_a_real_method }.to raise_error(OpalcoinClient::InvalidMethodError)
   end
 
 end
